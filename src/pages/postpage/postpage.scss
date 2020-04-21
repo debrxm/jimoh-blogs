@@ -1,0 +1,135 @@
+$tablet: 850px;
+$smartphone: 600px;
+$primaryColor: #77323b;
+$blackColor: #000000;
+$secondaryColor: #ffffff;
+
+// Mixin
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin smartphone {
+  @media (max-width: #{$smartphone}) {
+    @content;
+  }
+}
+.post-page {
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 70% !important;
+  margin: auto !important;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  background-color: $secondaryColor;
+  @include tablet() {
+    width: 90% !important;
+  }
+  .full-blog {
+    width: 80%;
+    margin: auto;
+    margin-top: -150px;
+    padding-top: 50px;
+    text-align: left;
+    @include smartphone() {
+      padding-top: 20px;
+      width: 90%;
+    }
+    .title {
+      font-size: 26px;
+      line-height: 35px;
+      font-weight: 600;
+      margin: 50px 0;
+      text-transform: capitalize !important;
+      @include smartphone() {
+        font-size: 20px;
+        margin: 20px 0;
+      }
+    }
+    .full-blog-image {
+      width: 100%;
+      // height: 500px;
+      img {
+        width: 100%;
+        // height: 400px;
+        margin-bottom: 20px;
+      }
+    }
+    .blog-content {
+      margin-bottom: 50px;
+      p {
+        font-weight: 300;
+        margin: 15px 0;
+      }
+    }
+  }
+  .full-blog-footer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0;
+    border-top: 1px solid #eab88c;
+    border-bottom: 1px solid #eab88c;
+    padding: 10px;
+    @include smartphone() {
+      justify-content: center;
+    }
+    span {
+      font-size: 14px;
+      margin: 0 5px;
+    }
+    .date-posted {
+      @include smartphone() {
+        display: none;
+      }
+    }
+    .share {
+      display: flex;
+      align-items: center;
+      .social {
+        // max-width: 12%;
+        // width: 100%;
+        // display: flex;
+        .logo-border {
+          padding: 5px;
+          border: 2px solid $blackColor;
+          border-radius: 50%;
+          margin: 10px;
+          width: 28px;
+          height: 28px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:hover {
+            background: white;
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.progress-container {
+  position: fixed;
+  top: 110px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #ccc;
+  z-index: 10;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 4px;
+  background: $primaryColor;
+  width: 0%;
+}

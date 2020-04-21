@@ -1,0 +1,124 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { DeviceUUID } from 'device-uuid';
+import renderHTML from 'react-render-html';
+import { getAllComments, updateViews } from '../../firebase/firebase.utils';
+import { selectBlogPost } from '../../redux/blog/blog.selector';
+import {
+  setCurrentReading,
+  updateHistory,
+} from '../../redux/blog/blog.actions';
+import facebook from '../../assets/facebook.svg';
+import twitter from '../../assets/twitter.svg';
+import Comments from '../../components/comments/comments';
+import CommentBox from '../../components/comment-box/comment-box';
+import './postpage.scss';
+class PostPage extends React.Component {
+  state = {
+    comments: [],
+    userIp: '',
+  };
+
+  async componentDidMount() {
+    const uuid = new DeviceUUID().get();
+    this.setState({ userIp: uuid });
+
+    if (this.props.blog[0]) {
+      const commentRef = await getAllComments({
+        collection: 'blog_comments',
+        documente: this.props.blog[0].title.toLowerCase(),
+      });
+      if (commentRef) {
+        commentRef.onSnapshot((snapShot) => {
+          this.setState({
+            comments: snapShot.data() ? snapShot.data().comments : [],
+          });
+        });
+      }
+    }
+
+    await updateViews({
+      collection: 'blog_views',
+      title: this.props.blog[0].title.toLowerCase(),
+      userIp: this.state.userIp,
+    });
+    setTimeout(() => {
+      this.props.setCurrentReading(this.props.blog[0]);
+    }, 1000);
+  }
+  componentWillUnmount() {
+    this.props.addToHistory(this.props.blog[0]);
+  }
+  render() {
+    const { title, content, image, tag } = this.props.blog[0];
+
+    return (
+      <div className="post-page container">
+        <Helmet>
+          <title>Jimoh's Blog &mdash; {title}</title>
+          <meta title="keywords" content={`${tag}, ${title}`} />
+          <meta name="description" content={`${title} `} />
+          <link rel="icon" href="../../../public/favicon.ico" />
+          <meta
+            property="og:title"
+            content={`We Read African &mdash; ${title}`}
+          />
+          <meta property="og:type" content="website" />
+          <meta name="description" content="" />
+          <meta property="og:site_name" content="Jimoh's Blog" />
+          <meta
+            property="og:url"
+            content={`https://www.jimohblog.com.ng/${title}`}
+          />
+        </Helmet>
+        <div className="full-blog">
+          <h1 className="title">{title}</h1>
+          <div className="full-blog-image">
+            <img src={image} alt="Blog img" />
+          </div>
+          <div className="blog-content">{renderHTML(`${content}`)}</div>
+        </div>
+        {/* <ProgressIndicator /> */}
+        <div className="full-blog-footer">
+          <div className="date-posted">
+            <span>Posted Febuary 16 2020</span>
+          </div>
+          <div className="share">
+            <span>Share This Post</span>
+            <div className="social">
+              <a href="https://web.facebook.com/profile.php?id=100013327810283">
+                <div className="logo-border">
+                  <img src={facebook} alt="Facebook Logo" />
+                </div>
+              </a>
+              <a href="https://twitter.com/ozzycodes">
+                <div className="logo-border">
+                  <img src={twitter} alt="Twitter Logo" />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <Comments collection="blog_comments" comments={this.state.comments} />
+        <CommentBox category="blog_comments" title={this.props.blog[0].title} />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    blog: selectBlogPost(
+      ownProps.match.params.blogId,
+      ownProps.match.url
+    )(state),
+    prevHistory: state.blog.history,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentReading: (reading) => dispatch(setCurrentReading(reading)),
+  addToHistory: (history) => dispatch(updateHistory(history)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostPage);

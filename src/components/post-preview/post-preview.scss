@@ -1,0 +1,182 @@
+$tablet: 850px;
+$smartphone: 500px;
+$primaryColor: #46322e;
+$blackColor: #000000;
+$secondaryColor: #ffffff;
+$shadow: 0px 4px 20px rgba(64, 27, 32, 0.15);
+
+// Mixin
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin smartphone {
+  @media (max-width: #{$smartphone}) {
+    @content;
+  }
+}
+.post-preview {
+  width: 300px;
+  // width: 100%;
+  box-shadow: $shadow;
+  height: 500px;
+  position: relative;
+  @include tablet() {
+    width: 270px;
+  }
+  // @include smartphone() {
+  //   width: 210px;
+  // }
+  .blog-image {
+    background-size: cover;
+    background-position: center;
+    max-height: 200px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    img {
+      min-height: 218px !important;
+      height: 100%;
+      width: 100%;
+    }
+    .date-created {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      border: none;
+      color: #fff;
+      height: 50px;
+      width: 50px;
+      border-radius: 0;
+      background-color: #212121b2 !important;
+      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
+        0 7px 12px -5px rgba(33, 33, 33, 0.46);
+    }
+  }
+  .blog-info {
+    text-align: left;
+    padding: 10px 20px 20px 20px;
+    min-height: 100%;
+    .post-preview-header {
+      .title {
+        cursor: pointer;
+        font-size: 20px !important;
+        font-weight: 500 !important;
+        font-size: 100%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      .tag {
+        text-transform: capitalize;
+        padding: 5px;
+        font-weight: 700;
+        display: inline-block;
+        color: $blackColor;
+        margin-bottom: 10px;
+        border-radius: 0;
+        font-size: 0.6875rem;
+        background-color: #212121d2 !important;
+        padding: 0.40625rem 1.25rem;
+        text-transform: uppercase;
+        color: $secondaryColor;
+        span {
+          font-size: 0.6875rem;
+          font-weight: 400;
+        }
+      }
+      .preview-text {
+        font-size: 14px;
+        margin-bottom: 10px;
+        .read-more {
+          cursor: pointer;
+          font-size: 13px;
+          color: $primaryColor;
+        }
+      }
+    }
+    .post-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      span {
+        font-size: 12px;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 16px;
+          margin-right: 5px;
+        }
+      }
+      .post-footer-date {
+        margin-right: 30px;
+      }
+      .post-footer-share {
+        position: relative;
+
+        .share {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          ul {
+            li {
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              list-style: none;
+              transition: all 0.5s;
+              opacity: 0;
+              a {
+                display: block;
+                text-align: center;
+                border-radius: 50%;
+                font-size: 2em;
+                img {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              cursor: pointer;
+              text-align: center;
+              color: black;
+              border-radius: 50%;
+              z-index: 1;
+            }
+            &:hover li:nth-child(1) {
+              transform: translate(30px, -100px);
+              opacity: 1;
+            }
+            &:hover li:nth-child(2) {
+              transform: translate(30px, -65px);
+              opacity: 1;
+            }
+            &:hover li:nth-child(3) {
+              transform: translate(30px, -30px);
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

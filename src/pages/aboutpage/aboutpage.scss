@@ -1,0 +1,55 @@
+$tablet: 850px;
+$smartphone: 500px;
+$primaryColor: #000000;
+$secondaryColor: #ffffff;
+
+// Mixin
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin smartphone {
+  @media (max-width: #{$smartphone}) {
+    @content;
+  }
+}
+
+.aboutpage {
+  // margin-top: 159px;
+  .left-right {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      // width: 60vw;
+      padding-left: 5%;
+      text-align: left;
+      .about-image {
+        width: 100%;
+        display: flex;
+        margin: 50px 0;
+        img {
+          margin: auto;
+          width: 300px;
+          height: 330;
+          @include smartphone() {
+            width: 200px;
+            height: 230px;
+          }
+        }
+      }
+      @include smartphone() {
+        width: 90vw;
+        margin: auto;
+      }
+    }
+    .right {
+      width: 25vw;
+      padding-right: 5%;
+      @include smartphone() {
+        display: none;
+      }
+    }
+  }
+}
