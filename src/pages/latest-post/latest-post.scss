@@ -56,15 +56,3 @@ $secondaryColor: #ffffff;
     margin-top: 50px;
   }
 }
-.load-more-btn {
-  padding: 10px 40px;
-  margin: 50px 0px;
-  transition: all 0.3s;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
-  background: #c3d8f5;
-  cursor: pointer;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
-  }
-}

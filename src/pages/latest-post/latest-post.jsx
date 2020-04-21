@@ -33,12 +33,13 @@ const LatestPost = ({ allBlog }) => {
                 </div>
               )}
             </div>
-            <br />
-            <br />
-            <Link to="/blog">
-              <span className="load-more-btn">View All Posts</span>
-            </Link>
           </div>
+          <br />
+          <br />
+          <br />
+          <Link to="/blog">
+            <span className="load-btn">View All Posts</span>
+          </Link>
         </section>
       </div>
     </div>

@@ -22,7 +22,7 @@ const Header = () => {
     <>
       {isShow ? <SideNav handleToggleSidebar={toggleMenu} /> : null}
       <header className="header">
-        <nav className="navbar">
+        <nav className={`${isShow ? 'dark' : ''} navbar`}>
           <div className="nav-links container">
             <div className="show">
               <div className="brand">
