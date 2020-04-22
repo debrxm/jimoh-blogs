@@ -1,10 +1,3 @@
-import firebase from 'firebase/app';
-import 'firebase/messaging';
-
-const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler((payload) =>
-  window.self.registration.showNotification({ data: payload.data.status })
-);
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
