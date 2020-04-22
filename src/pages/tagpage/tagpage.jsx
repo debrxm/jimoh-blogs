@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectTagPost } from '../../redux/blog/blog.selector';
 import PostPreview from '../../components/post-preview/post-preview';
+import loader from '../../assets/loader.gif';
 import './tagpage.scss';
 
 const TagPage = ({ blogs }) => {
@@ -22,8 +23,7 @@ const TagPage = ({ blogs }) => {
           ))
         ) : (
           <div className="loader">
-            {/* <img id="loader" src={loader} alt="Loader" /> */}
-            {/* <p className="date">No more posts</p> */}
+            <img id="loader" src={loader} alt="Loader" />
           </div>
         )}
       </div>

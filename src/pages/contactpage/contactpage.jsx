@@ -71,14 +71,14 @@ export default class ContactPage extends Component {
     return (
       <div className="contactpage">
         <Helmet>
-          <title>We Read African &mdash; Contact</title>
-          <meta property="og:title" content="We Read African &mdash; Contact" />
+          <title>Jimoh's Blog &mdash; Contact</title>
+          <meta property="og:title" content="Jimoh's Blog &mdash; Contact" />
           <meta property="og:type" content="website" />
           <meta name="description" content="" />
-          <meta property="og:site_name" content="We Read African" />
+          <meta property="og:site_name" content="Jimoh's Blog" />
           <meta
             property="og:url"
-            content="https://www.wereadafrican.com/contact"
+            content="https://www.jimohblogs.com.ng/contact"
           />
         </Helmet>
         <div className="left-right">

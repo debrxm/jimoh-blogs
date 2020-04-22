@@ -1,23 +1,19 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-// import sandra from '../../assets/sandra.svg';
 import './aboutpage.scss';
 const Aboutpage = () => {
   return (
     <div className="aboutpage">
       <Helmet>
-        <title>We Read African &mdash; About</title>
-        <meta property="og:title" content="We Read African &mdash; About" />
+        <title>Jimoh's Blog &mdash; About</title>
+        <meta property="og:title" content="Jimoh's Blog &mdash; About" />
         <meta property="og:type" content="website" />
         <meta name="description" content="" />
-        <meta property="og:site_name" content="We Read African" />
-        <meta property="og:url" content="https://www.wereadafrican.com/about" />
+        <meta property="og:site_name" content="Jimoh's Blog" />
+        <meta property="og:url" content="https://www.jimohblogs.com.ng/about" />
       </Helmet>
       <div className="left-right">
         <div className="left">
-          <div className="about-image">
-            {/* <img src={sandra} alt="About Img" /> */}
-          </div>
           <p>
             I'm Sandra, an award-winning book blogger and writer with a passion
             for brilliant books, independent bookstores and literary festivals.
