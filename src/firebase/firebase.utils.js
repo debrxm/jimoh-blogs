@@ -50,9 +50,6 @@ const firebaseConfig = {
 firebase[_0x5992('0x1')](firebaseConfig);
 
 const messaging = firebase.messaging();
-// messaging.usePublicVapidKey(
-//   'BE4oQwQ6SFWpjja5sxorXs4G9GRN4-KC-4dNrt3-1zlcXlRBtK7Zyo_NlO7fhR3ZVuA-UNO1py_McchXKtEge5U'
-// );
 messaging
   .requestPermission()
   .then(() => messaging.getToken())
