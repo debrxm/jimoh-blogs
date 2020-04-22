@@ -7,15 +7,15 @@ class ProgressIndicator extends React.Component {
     super(props);
     this.state = {
       scrolled: 0,
-      isSmallScreen: false,
+      // isSmallScreen: false,
     };
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.scrollProgress);
-    window.innerWidth <= 500
-      ? this.setState({ isSmallScreen: true })
-      : this.setState({ isSmallScreen: false });
+    // window.innerWidth <= 500
+    //   ? this.setState({ isSmallScreen: true })
+    //   : this.setState({ isSmallScreen: false });
   }
 
   componentWillUnmount() {
@@ -36,14 +36,13 @@ class ProgressIndicator extends React.Component {
   render() {
     const progressContainerStyle = {
       background: 'transparent',
-      // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
       height: '5px',
       position: 'fixed',
       top: '80px',
-      left: 0,
-      right: 0,
       width: '100vw',
-      zIndex: 10,
+      left: '0px',
+      right: '0px',
+      zIndex: 1,
     };
 
     const progressBarStyle = {

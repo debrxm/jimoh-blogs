@@ -29,12 +29,8 @@ class PostPreview extends React.Component {
       .map((view) => this.setState({ views: view }));
   }
   render() {
-    const {
-      blog_data,
-      showTrunc,
-      closeSearch,
-    } = this.props;
-    const { title, content, image, tag, updated_at} = blog_data;
+    const { blog_data, showTrunc, closeSearch } = this.props;
+    const { title, content, image, tag, updated_at } = blog_data;
     const handleRouting = () => {
       if (closeSearch) {
         this.props.closeSearch();
@@ -69,9 +65,9 @@ class PostPreview extends React.Component {
       <div className="post-preview">
         <div className="blog-image">
           <img src={image} alt="post img" />
-            <button className="date-created">
-              {currentDate} <br /> {currentMonth}
-            </button>
+          <button className="date-created">
+            {currentDate} <br /> {currentMonth}
+          </button>
         </div>
 
         <div className="blog-info">
@@ -86,6 +82,7 @@ class PostPreview extends React.Component {
                 {title}
               </h4>
             </Link>
+            <h6 className="author">by Jimoh Abdul-Rahman</h6>
             <br />
             <h5 className="tag">
               Category: <span>{tag.replace('_', ' ')}</span>

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { selectAllBlog } from '../../redux/blog/blog.selector';
 import { createStructuredSelector } from 'reselect';
 import PostPreview from '../../components/post-preview/post-preview';
+import loader from '../../assets/loader.gif';
 import './blog-posts.scss';
 export const BlogPosts = ({ allBlog, history }) => {
   return (
@@ -21,8 +22,7 @@ export const BlogPosts = ({ allBlog, history }) => {
           ))
         ) : (
           <div className="loader">
-            {/* <img id="loader" src={loader} alt="Loader" /> */}
-            {/* <p className="date">No more posts</p> */}
+            <img id="loader" src={loader} alt="Loader" />
           </div>
         )}
       </div>

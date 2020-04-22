@@ -19,6 +19,7 @@ import facebook from '../../assets/facebook.svg';
 import twitter from '../../assets/twitter.svg';
 import Comments from '../../components/comments/comments';
 import CommentBox from '../../components/comment-box/comment-box';
+import userIco from '../../assets/userIco.svg';
 import './postpage.scss';
 class PostPage extends React.Component {
   state = {
@@ -106,6 +107,19 @@ class PostPage extends React.Component {
         </Helmet>
         <div className="full-blog">
           <h1 className="title">{title}</h1>
+          <div class="post-info">
+            <div className="left-area">
+              <img src={userIco} alt="Profile" />
+            </div>
+            <div className="middle-area">
+              <b id="blog-author">Jimoh Abdul-Rahman</b>
+              <br />
+              <h6 className="date" id="blog-date">
+                Fri, 20 Dec 2019 19:40:22 GMT
+              </h6>
+            </div>
+          </div>
+
           <div className="full-blog-image">
             <img src={image} alt="Blog img" />
           </div>
@@ -113,9 +127,6 @@ class PostPage extends React.Component {
         </div>
         <ProgressIndicator />
         <div className="full-blog-footer">
-          <div className="date-posted">
-            <span>Posted Febuary 16 2020</span>
-          </div>
           <div className="share">
             <span>Share This Post</span>
             <div className="social">

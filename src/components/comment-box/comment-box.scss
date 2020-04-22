@@ -114,8 +114,8 @@ $secondaryColor: #ffffff;
   justify-content: center;
   align-items: center;
   margin: 50px 0;
-  border-top: 1px solid #eab88c;
-  border-bottom: 1px solid #eab88c;
+  border-bottom: 1px solid lighten($color: $primaryColor, $amount: 40);
+  border-bottom: 1px solid lighten($color: $primaryColor, $amount: 40);
   padding: 10px;
   span {
     cursor: pointer;

@@ -1,5 +1,6 @@
 $tablet: 850px;
 $smartphone: 500px;
+$xsmartphone: 400px;
 $primaryColor: #46322e;
 $blackColor: #000000;
 $secondaryColor: #ffffff;
@@ -16,9 +17,20 @@ $secondaryColor: #ffffff;
     @content;
   }
 }
+@mixin xsmartphone {
+  @media (max-width: #{$xsmartphone}) {
+    @content;
+  }
+}
 .latest-post {
   width: 75%;
   margin: auto;
+  @include smartphone() {
+    width: 90%;
+  }
+  @include xsmartphone() {
+    width: 98%;
+  }
   .blog-area {
     text-align: center;
     .single-post {
@@ -41,19 +53,16 @@ $secondaryColor: #ffffff;
   .output {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     justify-items: center;
 
     @include tablet() {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
 
     @include smartphone() {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
-  }
-  .prevent {
-    margin: 50px 0;
   }
   .load-more-btn {
     cursor: pointer;

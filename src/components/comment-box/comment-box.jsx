@@ -107,7 +107,8 @@ class CommentBox extends Component {
       </div>
     ) : (
       <div className="login">
-        Please <span onClick={signInWithGoogle}>Login</span> to comment
+        Please <span onClick={signInWithGoogle}>Login With Google</span> to
+        comment
       </div>
     );
   }

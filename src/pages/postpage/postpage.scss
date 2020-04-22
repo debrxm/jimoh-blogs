@@ -20,13 +20,16 @@ $secondaryColor: #ffffff;
   min-height: 100%;
   position: relative;
   z-index: 1;
-  width: 70% !important;
-  margin: auto !important;
+  width: 70%;
+  margin: auto;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   background-color: $secondaryColor;
   padding: 0 20px;
   @include tablet() {
-    width: 90% !important;
+    width: 90%;
+  }
+  @include smartphone() {
+    width: 98% !important;
   }
   .full-blog {
     width: 100%;
@@ -36,25 +39,56 @@ $secondaryColor: #ffffff;
     text-align: left;
     @include smartphone() {
       padding-top: 20px;
-      width: 90%;
+      width: 98%;
     }
     .title {
       font-size: 26px;
       line-height: 35px;
       font-weight: 600;
-      margin: 50px 0;
+      margin-top: 50px;
       text-transform: capitalize !important;
       @include smartphone() {
         font-size: 20px;
-        margin: 20px 0;
+        margin-top: 20px;
+      }
+    }
+    .post-info {
+      display: inline-flex;
+      align-items: center;
+      margin: 30px 0;
+      .left-area {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+        @include smartphone() {
+          height: 50px;
+          width: 50px;
+        }
+      }
+      .middle-area {
+        padding-left: 12px;
+        display: inline-block;
+        h6 {
+          font-weight: 500;
+          font-size: 15px;
+          color: darken($color: $secondaryColor, $amount: 40);
+          @include smartphone() {
+            font-size: 12px;
+          }
+        }
       }
     }
     .full-blog-image {
       width: 100%;
-      // height: 500px;
       img {
         width: 100%;
-        // height: 400px;
         margin-bottom: 20px;
       }
     }
@@ -71,10 +105,9 @@ $secondaryColor: #ffffff;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 50px 0;
     border-top: 1px solid lighten($color: $primaryColor, $amount: 40);
-    border-bottom: 1px solid lighten($color: $primaryColor, $amount: 40);
     padding: 10px;
     @include smartphone() {
       justify-content: center;
@@ -92,9 +125,6 @@ $secondaryColor: #ffffff;
       display: flex;
       align-items: center;
       .social {
-        // max-width: 12%;
-        // width: 100%;
-        // display: flex;
         .logo-border {
           padding: 5px;
           border: 2px solid $blackColor;
@@ -117,20 +147,4 @@ $secondaryColor: #ffffff;
       }
     }
   }
-}
-.progress-container {
-  position: fixed;
-  top: 110px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: #ccc;
-  z-index: 10;
-}
-
-/* The progress bar (scroll indicator) */
-.progress-bar {
-  height: 4px;
-  background: $primaryColor;
-  width: 0%;
 }

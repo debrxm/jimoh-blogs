@@ -33,7 +33,7 @@ $secondaryColor: #ffffff;
     left: 0;
     z-index: 6;
     padding: 20px 0 10px 0;
-    transition: all 1s;
+    transition: all 0.3s;
 
     .brand {
       border-radius: 50%;
@@ -45,7 +45,7 @@ $secondaryColor: #ffffff;
         font-family: 'Monoton', cursive;
         display: flex;
         align-items: center;
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
@@ -70,8 +70,7 @@ $secondaryColor: #ffffff;
     }
 
     .menu-button {
-      // background: $primaryColor;
-      width: 30px;
+      width: 25px;
       cursor: pointer;
     }
 
@@ -80,7 +79,6 @@ $secondaryColor: #ffffff;
       text-align: center;
 
       .links {
-        // height: 10vh;
         animation: animateHeight ease 3ms forwards;
         display: flex;
         flex-direction: column;
@@ -152,7 +150,7 @@ $secondaryColor: #ffffff;
         -ms-animation-fill-mode: forwards;
 
         &:hover {
-          background: #006eff;
+          // background: #006eff;
           color: $primaryColor;
         }
 
