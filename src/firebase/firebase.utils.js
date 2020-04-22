@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB-B5beId-sQKbUY099CyuiNccpCsuyqaY',
@@ -12,19 +13,26 @@ const firebaseConfig = {
   appId: '1:665062916345:web:24f89c41316f1c3d282228',
   measurementId: 'G-5PS580VNYG',
 };
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyBZSP7CF1qWOUtI7710O6eT_SJPzm2ow1k',
-//   authDomain: 'blog-test-cf27d.firebaseapp.com',
-//   databaseURL: 'https://blog-test-cf27d.firebaseio.com',
-//   projectId: 'blog-test-cf27d',
-//   storageBucket: 'blog-test-cf27d.appspot.com',
-//   messagingSenderId: '712716765117',
-//   appId: '1:712716765117:web:757aed783e2814d70eb4d4',
-//   measurementId: 'G-3E2DRSVVNM',
-// };
 
 firebase.initializeApp(firebaseConfig);
 
+const messaging = firebase.messaging();
+messaging.usePublicVapidKey(
+  'BE4oQwQ6SFWpjja5sxorXs4G9GRN4-KC-4dNrt3-1zlcXlRBtK7Zyo_NlO7fhR3ZVuA-UNO1py_McchXKtEge5U'
+);
+messaging
+  .requestPermission()
+  .then(() => {
+    return messaging.getToken();
+  })
+  .then((token) => {
+    console.log(token);
+  })
+  .catch((error) => console.log(error));
+
+messaging.onMessage((payload) => {
+  console.log(payload);
+});
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -151,8 +159,6 @@ export const addAComment = async ({ collection, d_ata }) => {
     }
   }
 };
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({
@@ -160,5 +166,6 @@ googleProvider.setCustomParameters({
 });
 
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
 export default firebase;
