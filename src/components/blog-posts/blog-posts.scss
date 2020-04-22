@@ -1,5 +1,6 @@
 $tablet: 850px;
 $smartphone: 500px;
+$xsmartphone: 400px;
 $primaryColor: #46322e;
 $blackColor: #000000;
 $secondaryColor: #ffffff;
@@ -17,7 +18,18 @@ $shadow: 0px 4px 20px rgba(64, 27, 32, 0.15);
     @content;
   }
 }
+@mixin xsmartphone {
+  @media (max-width: #{$xsmartphone}) {
+    @content;
+  }
+}
 .blog-post {
   width: 75%;
   margin: auto;
+  @include smartphone() {
+    width: 90%;
+  }
+  @include xsmartphone() {
+    width: 98%;
+  }
 }
