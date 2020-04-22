@@ -25,6 +25,7 @@ $secondaryColor: #ffffff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   background-color: $secondaryColor;
   padding: 0 20px;
+  padding-bottom: 30px;
   @include tablet() {
     width: 90% !important;
   }

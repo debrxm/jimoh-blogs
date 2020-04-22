@@ -5,9 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import { selectAllComments, selectViews } from '../../redux/blog/blog.selector';
 import renderHTML from 'react-render-html';
 import comment from '../../assets/comment.svg';
-import share from '../../assets/share.svg';
-import facebook from '../../assets/facebook.svg';
-import twitter from '../../assets/twitter.svg';
 import view from '../../assets/view.svg';
 import './post-preview.scss';
 class PostPreview extends React.Component {

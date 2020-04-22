@@ -85,24 +85,7 @@ class PostPage extends React.Component {
   }
   render() {
     const { title, content, image, tag, updated_at } = this.props.blog[0];
-    const date = new Date(updated_at.seconds * 1000),
-      months = [
-        'January',
-        'Feburary',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ];
-    // currentMonth = months[date.getMonth()],
-    // currentDate = date.getDate(),
-    // year = date.getFullYear();
+    const date = new Date(updated_at.seconds * 1000);
 
     return (
       <div className="post-page container">
