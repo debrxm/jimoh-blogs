@@ -18,7 +18,7 @@ class Comments extends Component {
     return (
       <div className="comments">
         <div className="head">
-          <h5>{commentLength} Comments</h5>
+          <b>COMMENTS({commentLength})</b>
         </div>
 
         {comments.length !== 0

@@ -3,12 +3,18 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { DeviceUUID } from 'device-uuid';
 import renderHTML from 'react-render-html';
-import { getAllComments, updateViews } from '../../firebase/firebase.utils';
+import {
+  getAllComments,
+  firestore,
+  updateViews,
+} from '../../firebase/firebase.utils';
 import { selectBlogPost } from '../../redux/blog/blog.selector';
 import {
   setCurrentReading,
   updateHistory,
 } from '../../redux/blog/blog.actions';
+import { updateBlogComments } from '../../redux/blog/blog.actions';
+import ProgressIndicator from '../../components/progress-indicator/progress-indicator';
 import facebook from '../../assets/facebook.svg';
 import twitter from '../../assets/twitter.svg';
 import Comments from '../../components/comments/comments';
@@ -37,7 +43,6 @@ class PostPage extends React.Component {
         });
       }
     }
-
     await updateViews({
       collection: 'blog_views',
       title: this.props.blog[0].title.toLowerCase(),
@@ -47,6 +52,33 @@ class PostPage extends React.Component {
       this.props.setCurrentReading(this.props.blog[0]);
     }, 1000);
   }
+  getCommentOnFirstAdd = async () => {
+    const commentRef = firestore.collection('blog_comments');
+    commentRef.onSnapshot(async (snapshot) => {
+      const comments = [];
+      snapshot.docs.forEach((doc) => {
+        const commentObj = {
+          id: doc.id,
+          comments: doc.data(),
+        };
+        comments.push(commentObj);
+      });
+      this.props.updateBlogComments(comments);
+    });
+    if (this.props.blog[0] & (this.state.comments.length === 0)) {
+      const commentRef = await getAllComments({
+        collection: 'blog_comments',
+        documente: this.props.blog[0].title.toLowerCase(),
+      });
+      if (commentRef) {
+        commentRef.onSnapshot((snapShot) => {
+          this.setState({
+            comments: snapShot.data() ? snapShot.data().comments : [],
+          });
+        });
+      }
+    }
+  };
   componentWillUnmount() {
     this.props.addToHistory(this.props.blog[0]);
   }
@@ -79,7 +111,7 @@ class PostPage extends React.Component {
           </div>
           <div className="blog-content">{renderHTML(`${content}`)}</div>
         </div>
-        {/* <ProgressIndicator /> */}
+        <ProgressIndicator />
         <div className="full-blog-footer">
           <div className="date-posted">
             <span>Posted Febuary 16 2020</span>
@@ -100,8 +132,12 @@ class PostPage extends React.Component {
             </div>
           </div>
         </div>
+        <CommentBox
+          category="blog_comments"
+          title={this.props.blog[0].title}
+          getCommentOnFirstAdd={this.getCommentOnFirstAdd}
+        />
         <Comments collection="blog_comments" comments={this.state.comments} />
-        <CommentBox category="blog_comments" title={this.props.blog[0].title} />
       </div>
     );
   }
@@ -118,6 +154,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch) => ({
   setCurrentReading: (reading) => dispatch(setCurrentReading(reading)),
+  updateBlogComments: (comment) => dispatch(updateBlogComments(comment)),
   addToHistory: (history) => dispatch(updateHistory(history)),
 });
 

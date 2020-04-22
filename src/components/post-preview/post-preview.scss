@@ -18,17 +18,10 @@ $shadow: 0px 4px 20px rgba(64, 27, 32, 0.15);
   }
 }
 .post-preview {
-  width: 300px;
-  // width: 100%;
+  width: 100%;
   box-shadow: $shadow;
   height: 500px;
   position: relative;
-  @include tablet() {
-    width: 270px;
-  }
-  // @include smartphone() {
-  //   width: 210px;
-  // }
   .blog-image {
     background-size: cover;
     background-position: center;
@@ -59,7 +52,6 @@ $shadow: 0px 4px 20px rgba(64, 27, 32, 0.15);
   .blog-info {
     text-align: left;
     padding: 10px 20px 20px 20px;
-    min-height: 100%;
     .post-preview-header {
       .title {
         cursor: pointer;

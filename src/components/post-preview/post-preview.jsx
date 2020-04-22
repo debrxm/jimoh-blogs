@@ -32,11 +32,9 @@ class PostPreview extends React.Component {
     const {
       blog_data,
       showTrunc,
-      showDate,
       closeSearch,
-      showViewShare,
     } = this.props;
-    const { title, content, image, tag, updated_at, truncate } = blog_data;
+    const { title, content, image, tag, updated_at} = blog_data;
     const handleRouting = () => {
       if (closeSearch) {
         this.props.closeSearch();
@@ -71,11 +69,9 @@ class PostPreview extends React.Component {
       <div className="post-preview">
         <div className="blog-image">
           <img src={image} alt="post img" />
-          {showDate ? (
             <button className="date-created">
               {currentDate} <br /> {currentMonth}
             </button>
-          ) : null}
         </div>
 
         <div className="blog-info">
@@ -94,34 +90,29 @@ class PostPreview extends React.Component {
             <h5 className="tag">
               Category: <span>{tag.replace('_', ' ')}</span>
             </h5>
-            {showTrunc ? (
-              <p className="preview-text">
-                {/* {renderHTML(content)[0]
-                  .props.children[0].split(' ')
-                  .slice(0, 30)
-                  .join(' ')} */}
-                {renderHTML(content).props
-                  ? renderHTML(content)
-                      .props.children[0].split(' ')
-                      .slice(0, 12)
-                      .join(' ')
-                  : renderHTML(content)[0]
-                      .props.children[0].split(' ')
-                      .slice(0, 12)
-                      .join(' ')}
-                ...{' '}
-                <Link
-                  to={`/blog/${tag.toString().toLowerCase()}/${title
-                    .split(' ')
-                    .join('-')
-                    .toLowerCase()}`}
-                >
-                  <span className="read-more" onClick={handleRouting}>
-                    read more
-                  </span>
-                </Link>
-              </p>
-            ) : null}
+
+            <p className="preview-text">
+              {renderHTML(content).props
+                ? renderHTML(content)
+                    .props.children[0].split(' ')
+                    .slice(0, 12)
+                    .join(' ')
+                : renderHTML(content)[0]
+                    .props.children[0].split(' ')
+                    .slice(0, 12)
+                    .join(' ')}
+              ...{' '}
+              <Link
+                to={`/blog/${tag.toString().toLowerCase()}/${title
+                  .split(' ')
+                  .join('-')
+                  .toLowerCase()}`}
+              >
+                <span className="read-more" onClick={handleRouting}>
+                  read more
+                </span>
+              </Link>
+            </p>
           </div>
           <div className="post-footer">
             <span className="post-footer-comment">
@@ -139,49 +130,47 @@ class PostPreview extends React.Component {
               Views
             </span>
 
-            {showViewShare ? (
-              <span className="post-footer-share">
-                <img src={share} alt="Comment Icon" />
-                share
-                <div className="share">
-                  <ul>
-                    <li>
-                      <a
-                        href={`http://www.facebook.com/sharer.php?u=https://wereadafrican.com/${tag}/${title
-                          .split(' ')
-                          .join('-')
-                          .toLowerCase()}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={facebook} alt="Facebook Icon" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="http://www.twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={twitter} alt="Twitter Icon" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://wereadafrican.com/${tag}/${title
-                          .split(' ')
-                          .join('-')
-                          .toLowerCase()}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={linkedin} alt="Linkedin Icon" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </span>
-            ) : null}
+            <span className="post-footer-share">
+              <img src={share} alt="Comment Icon" />
+              share
+              <div className="share">
+                <ul>
+                  <li>
+                    <a
+                      href={`http://www.facebook.com/sharer.php?u=https://wereadafrican.com/${tag}/${title
+                        .split(' ')
+                        .join('-')
+                        .toLowerCase()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={facebook} alt="Facebook Icon" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="http://www.twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={twitter} alt="Twitter Icon" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://wereadafrican.com/${tag}/${title
+                        .split(' ')
+                        .join('-')
+                        .toLowerCase()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={linkedin} alt="Linkedin Icon" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </span>
           </div>
         </div>
       </div>

@@ -25,8 +25,6 @@ class CommentBox extends Component {
     this.setState({ isLoading: true });
     event.preventDefault();
     const { title, category, currentUser } = this.props;
-    console.log(title, category, currentUser);
-
     const { name, newComment } = this.state;
     if (name.trim() === '' || newComment.trim() === '') return;
     const d_ata = {
@@ -39,6 +37,7 @@ class CommentBox extends Component {
       replies: [],
     };
     await addAComment({ collection: category, d_ata });
+    this.props.getCommentOnFirstAdd();
     this.setState({
       newComment: '',
       isLoading: false,
@@ -52,14 +51,28 @@ class CommentBox extends Component {
       <div className="comment-box">
         <form onSubmit={this.addComment}>
           <div className="field">
+            <div className="head">
+              <b>POST COMMENT</b>
+            </div>
             <div className="control">
-              <label>Comment</label>
-              <textarea
-                className="textarea"
-                name="newComment"
-                value={newComment}
-                onChange={this.updateInput}
-              ></textarea>
+              <div className="text-area">
+                <textarea
+                  required
+                  name="newComment"
+                  value={newComment}
+                  onChange={this.updateInput}
+                  className={`${newComment.length ? 'expand' : null}`}
+                  cols="100"
+                  rows="1"
+                ></textarea>
+                <label
+                  className={`${
+                    newComment.length ? 'shrink' : ''
+                  } form-input-label`}
+                >
+                  Write your comment.
+                </label>
+              </div>
             </div>
           </div>
           {currentUser ? null : (
@@ -78,12 +91,12 @@ class CommentBox extends Component {
           )}
 
           <div className="field">
-            <div className="control">
+            <div className="post-comment-control">
               <span
                 className="post-comment"
                 onClick={this.state.isLoading ? null : this.addComment}
               >
-                Post a Comment{' '}
+                <strong>Post Comment</strong>
                 {this.state.isLoading ? (
                   <img src={loader} alt="Loader Gif" />
                 ) : null}

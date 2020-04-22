@@ -19,10 +19,10 @@ import { selectAllBlog } from './redux/blog/blog.selector';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Contactpage from './pages/contactpage/contactpage';
+import Homepage from './pages/homepage/homepage';
 import Aboutpage from './pages/aboutpage/aboutpage';
 import Blogpage from './pages/blogpage/blogpage';
 import NotFound from './pages/notfoundpage/NotFoundPage';
-import LatestPost from './pages/latest-post/latest-post';
 import './App.css';
 
 class App extends React.Component {
@@ -112,7 +112,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route exact path="/" component={LatestPost} />
+          <Route exact path="/" component={Homepage} />
           <Route path="/blog" component={Blogpage} />
           <Route exact path="/about" component={Aboutpage} />
           <Route exact path="/contact" component={Contactpage} />

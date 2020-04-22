@@ -8,27 +8,25 @@ $secondaryColor: #ffffff;
     @content;
   }
 }
-
+@mixin shrinkLabel {
+  top: -18px;
+  font-size: 13px;
+}
 .comment-box {
+  margin: auto;
   margin-top: 20px;
   max-width: 500px;
   // color: $secondaryColor;
-
+  // text-align: center;
   .head {
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 40px;
     border: 1px solid $secondaryColor;
     padding: 10px;
     margin-top: 15px;
-
-    h5 {
-      @include smartphone() {
-        font-size: 14px;
-      }
-    }
   }
   .form-input {
     background: none;
@@ -41,45 +39,72 @@ $secondaryColor: #ffffff;
     margin: 10px 0 25px 0;
   }
 
-  textarea {
-    background: none;
-    background-color: transparent;
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    width: 100%;
-    height: 200px;
-    border-radius: 0;
-    border: 1px solid #efd7d7;
-    margin: 10px 0 25px 0;
-    transition: all 0.5s;
+  .text-area {
+    position: relative;
+
+    .expand {
+      height: 100px;
+    }
+
+    textarea {
+      background: none;
+      background-color: transparent;
+      font-size: 18px;
+      padding: 10px 10px 10px 5px;
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid gray;
+      margin: 25px 0;
+      color: gray;
+      transition: all 0.5s;
+
+      &:focus {
+        outline: none;
+        height: 100px;
+      }
+
+      &:focus ~ .form-input-label {
+        @include shrinkLabel();
+      }
+    }
+    .form-input-label {
+      color: gray;
+      font-size: 15px;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 5px;
+      top: 10px;
+      transition: 300ms ease all;
+
+      &.shrink {
+        @include shrinkLabel();
+      }
+    }
   }
-  .post-comment {
-    cursor: pointer;
-    float: right;
-    margin-bottom: 20px;
-    height: 30px;
-    width: 281px;
+  .post-comment-control {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 45px;
-    border: 1px solid #77323b;
-    border-radius: 30px;
-    white-space: nowrap;
-    font-size: 14px;
-    color: #77323b;
-    img {
-      width: 18px;
-      height: 18px;
-      margin-left: 5px;
-    }
-    @include smartphone() {
-      width: 90%;
-      float: none;
-    }
-    &:hover {
-      transform: translateY(-2px);
+    .post-comment {
+      text-align: center;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin: auto;
+      margin-top: 10px;
+      transition: all 0.3s;
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+      background: #c3d8f5;
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+      }
+      img {
+        width: 18px;
+        height: 18px;
+        margin-left: 5px;
+      }
     }
   }
 }

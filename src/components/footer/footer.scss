@@ -1,10 +1,11 @@
-$smartphone-width: 600px;
+$tablet: 850px;
+$smartphone: 500px;
 $primaryColor: #46322e;
 $blackColor: #000000;
 $secondaryColor: #ffffff;
 
 @mixin smartphone {
-  @media (max-width: #{$smartphone-width}) {
+  @media (max-width: #{$smartphone}) {
     @content;
   }
 }
@@ -51,19 +52,6 @@ $secondaryColor: #ffffff;
 
     img {
       width: 100%;
-    }
-  }
-
-  @include smartphone() {
-    .logo-border {
-      width: 10px;
-      height: 10px;
-      display: flex;
-
-      img {
-        margin: auto;
-        width: 12px;
-      }
     }
   }
 
