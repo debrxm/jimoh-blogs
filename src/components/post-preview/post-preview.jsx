@@ -6,9 +6,8 @@ import { selectAllComments, selectViews } from '../../redux/blog/blog.selector';
 import renderHTML from 'react-render-html';
 import comment from '../../assets/comment.svg';
 import share from '../../assets/share.svg';
-import facebook from '../../assets/socials/facebook.svg';
-import twitter from '../../assets/socials/twitter.svg';
-import linkedin from '../../assets/socials/linkedin.svg';
+import facebook from '../../assets/facebook.svg';
+import twitter from '../../assets/twitter.svg';
 import view from '../../assets/view.svg';
 import './post-preview.scss';
 class PostPreview extends React.Component {
@@ -126,54 +125,13 @@ class PostPreview extends React.Component {
                 : 0}{' '}
               Views
             </span>
-
-            <span className="post-footer-share">
-              <img src={share} alt="Comment Icon" />
-              share
-              <div className="share">
-                <ul>
-                  <li>
-                    <a
-                      href={`http://www.facebook.com/sharer.php?u=https://wereadafrican.com/${tag}/${title
-                        .split(' ')
-                        .join('-')
-                        .toLowerCase()}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img src={facebook} alt="Facebook Icon" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="http://www.twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img src={twitter} alt="Twitter Icon" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://wereadafrican.com/${tag}/${title
-                        .split(' ')
-                        .join('-')
-                        .toLowerCase()}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img src={linkedin} alt="Linkedin Icon" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </span>
           </div>
         </div>
       </div>
     );
   }
 }
+
 const mapStateToProps = createStructuredSelector({
   postComments: selectAllComments,
   postViews: selectViews,

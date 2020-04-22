@@ -84,7 +84,25 @@ class PostPage extends React.Component {
     this.props.addToHistory(this.props.blog[0]);
   }
   render() {
-    const { title, content, image, tag } = this.props.blog[0];
+    const { title, content, image, tag, updated_at } = this.props.blog[0];
+    const date = new Date(updated_at.seconds * 1000),
+      months = [
+        'January',
+        'Feburary',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+    // currentMonth = months[date.getMonth()],
+    // currentDate = date.getDate(),
+    // year = date.getFullYear();
 
     return (
       <div className="post-page container">
@@ -107,7 +125,7 @@ class PostPage extends React.Component {
         </Helmet>
         <div className="full-blog">
           <h1 className="title">{title}</h1>
-          <div class="post-info">
+          <div className="post-info">
             <div className="left-area">
               <img src={userIco} alt="Profile" />
             </div>
@@ -115,7 +133,7 @@ class PostPage extends React.Component {
               <b id="blog-author">Jimoh Abdul-Rahman</b>
               <br />
               <h6 className="date" id="blog-date">
-                Fri, 20 Dec 2019 19:40:22 GMT
+                {date.toString().toString().split(' ').slice(0, 5).join(' ')}
               </h6>
             </div>
           </div>
@@ -130,7 +148,14 @@ class PostPage extends React.Component {
           <div className="share">
             <span>Share This Post</span>
             <div className="social">
-              <a href="https://web.facebook.com/profile.php?id=100013327810283">
+              <a
+                href={`http://www.facebook.com/sharer.php?u=https://jimoh-blogs.netlify.app/${tag}/${title
+                  .split(' ')
+                  .join('-')
+                  .toLowerCase()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="logo-border">
                   <img src={facebook} alt="Facebook Logo" />
                 </div>
